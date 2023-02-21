@@ -4,6 +4,7 @@ use std::env;
 use std::process;
 
 fn main() {
+    let url = "chrome-extension://iheobagjkfklnlikgihanlhcddjoihkg/blocked.html?category=";
     let args: Vec<String> = env::args().collect();
     if args.len() <= 1 || args.len() > 2 {
         println!("Usage: stpg [payload]");
@@ -11,5 +12,5 @@ fn main() {
     }
     let payload = &args[1];
     let plb64: String = general_purpose::STANDARD_NO_PAD.encode(payload.as_bytes());
-    println!("{}", encode(&plb64));
+    println!("{}{}", url, encode(&plb64));
 }
